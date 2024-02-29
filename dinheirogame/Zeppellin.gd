@@ -2,8 +2,11 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -50.0
-var newgravity = 490
+const JUMP_VELOCITY = -150.0
+var newgravity = 290
+
+func _ready():
+	$GravChanger.start()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -18,5 +21,8 @@ func _physics_process(delta):
 
 
 func _on_death_zone_body_entered(body):
-	if body == "Zeppellin":
-		get_tree().quit()
+	pass
+
+
+func _on_grav_changer_timeout():
+	newgravity += 5
