@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://du02xlx7jspsw"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_gr6s8"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gr6s8")
+
+[node name="caixa de 3" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 499.0
+offset_right = 725.0
+offset_bottom = 712.0
+
+[node name="StartBttn" type="Button" parent="caixa de 3"]
+layout_mode = 2
+text = "START"
+
+[node name="opicoesbttn" type="Button" parent="caixa de 3"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="quitbttn" type="Button" parent="caixa de 3"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 0
+offset_top = 114.0
+offset_right = 119.0
+offset_bottom = 154.0
+scale = Vector2(9.5802, 8.05848)
+
+[node name="Label" type="Label" parent="AspectRatioContainer"]
+layout_mode = 2
+text = "Os \"Filantropos"
+
+[connection signal="pressed" from="caixa de 3/StartBttn" to="." method="_on_start_bttn_pressed"]
+[connection signal="pressed" from="caixa de 3/opicoesbttn" to="." method="_on_opicoesbttn_pressed"]
+[connection signal="pressed" from="caixa de 3/quitbttn" to="." method="_on_quitbttn_pressed"]

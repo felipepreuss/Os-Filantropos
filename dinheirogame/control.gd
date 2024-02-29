@@ -4,7 +4,7 @@ extends Control
   
 
 func _on_start_bttn_pressed():
-	get_tree().change_scene_to_file("res://node_2d.tscn")
+	get_tree().change_scene_to_file("res://jgoo.tscn")
 
 
 func _on_opicoesbttn_pressed():
