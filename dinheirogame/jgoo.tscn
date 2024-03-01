@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://drs78xptn6yta"]
+[gd_scene load_steps=9 format=3 uid="uid://drs78xptn6yta"]
 
 [ext_resource type="Texture2D" uid="uid://dtvyb5csu8lpu" path="res://icon.svg" id="1_kp038"]
 [ext_resource type="Script" path="res://Zeppellin.gd" id="1_ny46s"]
@@ -21,6 +21,12 @@ size = Vector2(17.646, 15.6789)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0smi"]
 size = Vector2(1207.19, 156.583)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dsfn"]
+size = Vector2(1168, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcmqx"]
+size = Vector2(1167, 171)
+
 [node name="CenaDeJogo" type="Node2D"]
 
 [node name="Zeppellin" type="CharacterBody2D" parent="."]
@@ -39,7 +45,7 @@ scale = Vector2(0.930872, -1.46249)
 shape = SubResource("RectangleShape2D_xavg1")
 
 [node name="GravChanger" type="Timer" parent="Zeppellin"]
-wait_time = 4.0
+wait_time = 10.0
 
 [node name="DeathZone" type="Area2D" parent="."]
 position = Vector2(259.012, 2895.62)
@@ -51,14 +57,30 @@ rotation = -3.14159
 scale = Vector2(0.706278, -0.534244)
 shape = SubResource("RectangleShape2D_r0smi")
 
+[node name="SafeZone" type="Area2D" parent="."]
+
+[node name="SafeCollision" type="CollisionShape2D" parent="SafeZone"]
+position = Vector2(574, 54.5)
+shape = SubResource("RectangleShape2D_2dsfn")
+
+[node name="SafeZone2" type="Area2D" parent="."]
+
+[node name="SafeCollision2" type="CollisionShape2D" parent="SafeZone2"]
+position = Vector2(573.5, -63.5)
+shape = SubResource("RectangleShape2D_rcmqx")
+
 [node name="placeholdergrav" type="Label" parent="."]
 offset_left = 16.0
 offset_top = 56.0
 offset_right = 122.0
 offset_bottom = 125.0
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 30
 text = "grav"
 script = ExtResource("3_m2okp")
 
 [connection signal="timeout" from="Zeppellin/GravChanger" to="Zeppellin" method="_on_grav_changer_timeout"]
 [connection signal="body_entered" from="DeathZone" to="Zeppellin" method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="SafeZone" to="Zeppellin" method="_on_safe_zone_body_entered"]
+[connection signal="body_exited" from="SafeZone" to="Zeppellin" method="_on_safe_zone_body_exited"]
+[connection signal="body_entered" from="SafeZone2" to="Zeppellin" method="_on_safe_zone_2_body_entered"]
+[connection signal="body_exited" from="SafeZone2" to="Zeppellin" method="_on_safe_zone_2_body_exited"]
