@@ -6,6 +6,10 @@ var can_press_right = true
 var can_press_a = true
 var moneycounter = 10000000
 var moneythrown = 1
+const inflationtimer = 10
+const deflationtimer = 10
+var realinflationtimer = 0
+var realdeflationtimer = 0
 
 func _ready():
 	$GravChanger.start()
@@ -24,6 +28,12 @@ func _physics_process(delta):
 		can_press_a = true
 		can_press_right = false
 		moneycounter -= moneythrown
+
+	if realinflationtimer > 0:
+		realinflationtimer -= 1
+
+	if realdeflationtimer > 0:
+		realdeflationtimer -= 1
 
 	if moneycounter <= 0:
 		get_tree().change_scene_to_file("res://anita_max_wynn.tscn")
@@ -49,3 +59,9 @@ func _on_safe_zone_2_body_entered(body):
 
 func _on_safe_zone_2_body_exited(body):
 	JUMP_VELOCITY *= 5
+
+func _on_inf_area_body_entered(body):
+		realinflationtimer = inflationtimer
+
+func _on_def_area_body_entered(body):
+		realdeflationtimer = deflationtimer

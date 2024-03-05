@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "money: " + str(get_node("../../Zeppellin").moneycounter)
+	text = "def: " + str(get_node("../../Zeppellin").realdeflationtimer)
