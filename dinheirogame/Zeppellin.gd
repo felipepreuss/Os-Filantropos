@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-
-const SPEED = 300.0
 var JUMP_VELOCITY = -75.0
 var newgravity = 290
 var can_press_right = true
 var can_press_a = true
+var moneycounter = 10000000
+var moneythrown = 1
 
 func _ready():
 	$GravChanger.start()
@@ -13,9 +13,6 @@ func _ready():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += newgravity * delta
-
-	#if Input.is_action_just_pressed("ui_accept"):
-		#velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_pressed("A") && can_press_a == true:
 		velocity.y = JUMP_VELOCITY
@@ -26,6 +23,10 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		can_press_a = true
 		can_press_right = false
+		moneycounter -= moneythrown
+
+	if moneycounter <= 0:
+		get_tree().change_scene_to_file("res://anita_max_wynn.tscn")
 
 	move_and_slide()
 
@@ -35,6 +36,7 @@ func _on_death_zone_body_entered(body):
 	
 func _on_grav_changer_timeout():
 	newgravity *= 1.1
+	moneythrown *= 2
 
 func _on_safe_zone_body_entered(body):
 	JUMP_VELOCITY = JUMP_VELOCITY/2
