@@ -20,15 +20,15 @@ offset_bottom = 712.0
 
 [node name="StartBttn" type="Button" parent="caixa de 3"]
 layout_mode = 2
-text = "START"
+text = "COMEÇAR"
 
-[node name="opicoesbttn" type="Button" parent="caixa de 3"]
+[node name="InstructionBttn" type="Button" parent="caixa de 3"]
 layout_mode = 2
-text = "OPTIONS"
+text = "INSTRUÇÕES"
 
-[node name="quitbttn" type="Button" parent="caixa de 3"]
+[node name="QuitBttn" type="Button" parent="caixa de 3"]
 layout_mode = 2
-text = "QUIT"
+text = "SAIR"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -40,5 +40,5 @@ theme_override_font_sizes/font_size = 140
 text = "Os \"Filantropos\""
 
 [connection signal="pressed" from="caixa de 3/StartBttn" to="." method="_on_start_bttn_pressed"]
-[connection signal="pressed" from="caixa de 3/opicoesbttn" to="." method="_on_opicoesbttn_pressed"]
-[connection signal="pressed" from="caixa de 3/quitbttn" to="." method="_on_quitbttn_pressed"]
+[connection signal="pressed" from="caixa de 3/InstructionBttn" to="." method="_on_opicoesbttn_pressed"]
+[connection signal="pressed" from="caixa de 3/QuitBttn" to="." method="_on_quitbttn_pressed"]

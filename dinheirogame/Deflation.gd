@@ -6,28 +6,28 @@ var randomY = rng.randf_range(100.0, 300.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"../../UI/InflationSpawner".start()
+	$"../../UI/DeflationSpawner".start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	position.x += speed
+	position.x -= speed
 
-func _on_inf_area_body_entered(body):
+func _on_def_area_body_entered(body):
 	if body.name == "Zeppellin":
 		speed = 0
-		position.x = -90
-		$"../../UI/InflationSpawner".start()
+		position.x = 1160
+		$"../../UI/DeflationSpawner".start()
 
 func _spawn(spawnspeed, height):
 	speed = spawnspeed
 	position.y = height
-	$"../../UI/InflationSpawner".stop()
+	$"../../UI/DeflationSpawner".stop()
 
-func _on_powerup_spawner_timeout():
+func _on_deflation_spawner_timeout():
 	_spawn(2, randomY)
 
 func _on_powerup_exit_body_entered(body):
-	if body.name == "Inflation":
+	if body.name == "Deflation":
 		speed = 0
-		position.x = -90
-		$"../../UI/InflationSpawner".start()
+		position.x = 1160
+		$"../../UI/DeflationSpawner".start()
