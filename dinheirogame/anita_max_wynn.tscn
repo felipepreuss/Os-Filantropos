@@ -8,24 +8,23 @@ position = Vector2(306, 197)
 script = ExtResource("1_bryi2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(268, 128)
+position = Vector2(268, 164)
 scale = Vector2(1.04231, 0.604113)
 texture = ExtResource("1_fvh6t")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 585.0
-offset_top = 127.0
-offset_right = 599.0
-offset_bottom = 139.0
-theme_override_font_sizes/font_size = 2
-text = "RESET"
-
 [node name="Label" type="Label" parent="."]
 offset_left = -256.0
-offset_top = -165.0
+offset_top = -153.0
 offset_right = 794.0
-offset_bottom = -142.0
+offset_bottom = -118.0
 theme_override_font_sizes/font_size = 25
-text = "parabend agora q eles sobreviveram els ´pdem se comer  pra todo o sempre"
+text = "Parabéns! Vocês conseguiram pousar o Zeppelin com sucesso! Mas e o dinheiro? D:"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 585.0
+offset_top = 163.0
+offset_right = 599.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -12,27 +12,27 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if get_node("../../Zeppellin").release_controls == true && spawn_started == false:
-		$"InflationSpawner".start()
+		$"MaeSpawner".start()
 		spawn_started = true
-	position.x += speed
+	position.x -= speed
 
-func _on_inf_area_body_entered(body):
+func _on_mae_area_body_entered(body):
 	if body.name == "Zeppellin":
 		speed = 0
-		position.x = -90
-		$"InflationSpawner".start()
+		position.x = 1160
+		$"MaeSpawner".start()
 
 func _spawn(spawnspeed, height):
 	speed = spawnspeed
 	position.y = height
-	$"InflationSpawner".stop()
+	$"MaeSpawner".stop()
 
-func _on_powerup_spawner_timeout():
+func _on_mae_spawner_timeout():
 	_spawn(2, randomY)
 	randomY = rng.randf_range(100.0, 300.0)
 
 func _on_powerup_exit_body_entered(body):
-	if body.name == "Inflation":
+	if body.name == "MaeDoCarlos":
 		speed = 0
-		position.x = -90
-		$"InflationSpawner".start()
+		position.x = 1160
+		$"MaeSpawner".start()

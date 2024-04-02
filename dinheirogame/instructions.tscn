@@ -6,22 +6,22 @@
 script = ExtResource("1_rd10e")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 205.0
-offset_top = 139.0
-offset_right = 860.0
-offset_bottom = 359.0
+offset_left = 207.0
+offset_top = 195.0
+offset_right = 892.0
+offset_bottom = 415.0
 theme_override_font_sizes/font_size = 50
-text = "aperta a e setsa pra fireita
-n mate ninguem
-fique pobre"
+text = "Tente se manter acima do chão pressionando A e →
+até seu dinheiro chegar a 0."
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="."]
-offset_left = 443.0
-offset_top = 485.0
-offset_right = 656.0
-offset_bottom = 562.0
+offset_left = 375.0
+offset_top = 483.0
+offset_right = 702.0
+offset_bottom = 560.0
 theme_override_font_sizes/font_size = 50
-text = "Tendi"
+text = "Alguma dica?"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -6,4 +6,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = "money: " + str(get_node("../../Zeppellin").moneycounter)
+	if get_node("../../Zeppellin").release_controls == false:
+		text = "Pressione A ou → para começar"
+	else:
+		text = ""

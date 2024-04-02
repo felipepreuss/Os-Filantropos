@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0bf5w218lya8"]
+
+[ext_resource type="Script" path="res://dicks.gd" id="1_08tsx"]
+[ext_resource type="Texture2D" uid="uid://dhxrxfyluilx" path="res://win screen.png" id="1_kiq5w"]
+[ext_resource type="Texture2D" uid="uid://dxsr27cgsmaho" path="res://carlos.png" id="2_jth2x"]
+[ext_resource type="Texture2D" uid="uid://brjkcci2mw8i" path="res://11.jpg" id="3_r74vg"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_08tsx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 505.0
+offset_top = 18.0
+offset_right = 607.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 40
+text = "Dicas"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 66.0
+offset_top = 68.0
+offset_right = 383.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 25
+text = "Como o objetivo é perder dinheiro, evite o Powerup que te dá dinheiro, que se parece com:"
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Label2"]
+position = Vector2(132, 212)
+scale = Vector2(0.091523, 0.113707)
+texture = ExtResource("1_kiq5w")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 356.0
+offset_right = 375.0
+offset_bottom = 584.0
+theme_override_font_sizes/font_size = 25
+text = "Invés disso, pegue este, que te faz perder dinheiro mais rápido:"
+autowrap_mode = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="Label3"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(133, 179)
+scale = Vector2(0.0987453, 0.120603)
+texture = ExtResource("1_kiq5w")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 748.0
+offset_top = 70.0
+offset_right = 1065.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 25
+text = "Evite o poweup que aumenta a gravidade do jogo, pois tu vai tomar na bundinha:"
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Label4"]
+position = Vector2(132, 221)
+scale = Vector2(0.0668746, 0.0691915)
+texture = ExtResource("2_jth2x")
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 747.0
+offset_top = 367.0
+offset_right = 1048.0
+offset_bottom = 595.0
+theme_override_font_sizes/font_size = 25
+text = "Invés disso, pegue este, que te faz mais leve:"
+autowrap_mode = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="Label5"]
+position = Vector2(156, 166)
+scale = Vector2(0.172612, 0.196826)
+texture = ExtResource("3_r74vg")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 451.0
+offset_top = 298.0
+offset_right = 649.0
+offset_bottom = 375.0
+theme_override_font_sizes/font_size = 50
+text = "Beleuza"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
