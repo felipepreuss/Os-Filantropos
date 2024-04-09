@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://4nhwifau144t"]
+[gd_scene load_steps=3 format=3 uid="uid://4nhwifau144t"]
 
 [ext_resource type="Script" path="res://story.gd" id="1_sukvp"]
+[ext_resource type="Texture2D" uid="uid://djrg7j7uk83cw" path="res://botões.png" id="2_jxqch"]
 
 [node name="Story" type="Node2D"]
+position = Vector2(83, 43)
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_sukvp")
 
 [node name="Label" type="Label" parent="."]
@@ -26,11 +29,16 @@ Mas quanto mais eles sobrevivem...
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-offset_left = 535.0
-offset_top = 611.0
-offset_right = 639.0
-offset_bottom = 671.0
+offset_left = 502.5
+offset_top = 617.5
+offset_right = 686.5
+offset_bottom = 677.5
 theme_override_font_sizes/font_size = 35
-text = "Jogar"
+text = "Instruções"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(597.5, 450)
+scale = Vector2(0.5, 0.469)
+texture = ExtResource("2_jxqch")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

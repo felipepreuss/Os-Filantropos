@@ -7,5 +7,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	text = "onze: " + str(get_node("../../Zeppellin").realonzetimer)
+func _process(_delta):
+	text = "-Gravidade: " + str(get_node("../../Zeppellin").realonzetimer)

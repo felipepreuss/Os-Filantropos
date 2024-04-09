@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 var release_controls = false
-var JUMP_VELOCITY = -75.0
-var newgravity = 130
+@export var JUMP_VELOCITY = -75.0
+@export var newgravity = 130
+@export var gravadder = 1.2
 var can_press_right = true
 var can_press_a = true
 var moneycounter = 10000000
@@ -19,26 +20,30 @@ var infthrown = 1
 var defthrown = 1
 var maegrav = 1
 var onzegrav = 1
+var rng = RandomNumberGenerator.new()
+var debug = false
 
 func _ready():
 	pass
 
 func _physics_process(delta):
+	if Input.is_action_just_pressed("debug"):
+		debug = true
+
 	if release_controls:
-		if not is_on_floor():
+
+		if debug == false && not is_on_floor():
 			velocity.y += newgravity * delta * maegrav / onzegrav
 
 		if Input.is_action_just_pressed("A") && can_press_a == true:
 			velocity.y = JUMP_VELOCITY
 			can_press_a = false
 			can_press_right = true
-			moneycounter -= moneythrown * defthrown / infthrown
 
 		if Input.is_action_just_pressed("Direita") && can_press_right == true:
 			velocity.y = JUMP_VELOCITY
 			can_press_a = true
 			can_press_right = false
-			moneycounter -= moneythrown * defthrown / infthrown
 
 		if realinflationtimer > 0:
 			infthrown = 2
@@ -51,12 +56,12 @@ func _physics_process(delta):
 			defthrown = 1
 
 		if realmaetimer > 0:
-			maegrav = 5
+			maegrav = 35
 		else:
 			maegrav = 1
 
 		if realonzetimer > 0:
-			onzegrav = 5
+			onzegrav = 1.5
 		else:
 			onzegrav = 1
 
@@ -72,25 +77,31 @@ func _physics_process(delta):
 			release_controls = true
 			$GravChanger.start()
 			$PowerupTimer.start()
+			$MoneyTick.start()
 
 func _on_death_zone_body_entered(body):
-	get_tree().change_scene_to_file("res://gameover.tscn")
-	
+	if body.name == "Zeppellin":
+		get_tree().change_scene_to_file("res://gameover.tscn")
+
 func _on_grav_changer_timeout():
-	newgravity *= 1.3
+	newgravity *= gravadder
 	moneythrown *= 2
 
 func _on_safe_zone_body_entered(body):
-	JUMP_VELOCITY = JUMP_VELOCITY/2
+	if body.name == "Zeppellin":
+		JUMP_VELOCITY = JUMP_VELOCITY/2
 
 func _on_safe_zone_body_exited(body):
-	JUMP_VELOCITY *= 2
+	if body.name == "Zeppellin":
+		JUMP_VELOCITY *= 2
 
 func _on_safe_zone_2_body_entered(body):
-	JUMP_VELOCITY = JUMP_VELOCITY/5
+	if body.name == "Zeppellin":
+		JUMP_VELOCITY = JUMP_VELOCITY/5
 
 func _on_safe_zone_2_body_exited(body):
-	JUMP_VELOCITY *= 5
+	if body.name == "Zeppellin":
+		JUMP_VELOCITY *= 5
 
 func _on_inf_area_body_entered(body):
 	if body.name == "Zeppellin":
@@ -102,7 +113,7 @@ func _on_def_area_body_entered(body):
 
 func _on_mae_area_body_entered(body):
 	if body.name == "Zeppellin":
-		realinflationtimer = inflationtimer
+		realmaetimer = maetimer
 
 func _on_onze_area_body_entered(body):
 	if body.name == "Zeppellin":
@@ -120,3 +131,6 @@ func _on_powerup_timer_timeout():
 
 	if realonzetimer > 0:
 		realonzetimer -= 1
+
+func _on_money_tick_timeout():
+	moneycounter -= moneythrown * defthrown / infthrown

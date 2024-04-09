@@ -10,8 +10,9 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if get_node("../../Zeppellin").release_controls == true && spawn_started == false:
+		await get_tree().create_timer(rng.randf_range(10, 20)).timeout
 		$"DeflationSpawner".start()
 		spawn_started = true
 	position.x -= speed
@@ -28,7 +29,7 @@ func _spawn(spawnspeed, height):
 	$"DeflationSpawner".stop()
 
 func _on_deflation_spawner_timeout():
-	_spawn(2, randomY)
+	_spawn(3, randomY)
 	randomY = rng.randf_range(100.0, 300.0)
 
 func _on_powerup_exit_body_entered(body):
