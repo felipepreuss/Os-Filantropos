@@ -20,6 +20,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_8cke7")
 
 [node name="StartBttn" type="Button" parent="."]
+layout_mode = 0
 offset_left = 481.0
 offset_top = 479.0
 offset_right = 567.0
@@ -28,6 +29,7 @@ scale = Vector2(1.44812, 1.51772)
 text = "COMEÇAR"
 
 [node name="QuitBttn" type="Button" parent="."]
+layout_mode = 0
 offset_left = 482.0
 offset_top = 566.0
 offset_right = 580.0

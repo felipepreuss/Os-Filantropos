@@ -35,5 +35,5 @@ func _on_bird_nest_timeout():
 func _on_bird_killing_body_entered(body):
 	if body.name == "NormalBird":
 		speed = 0
-		position.x = 1500
+		position.x = -162
 		$"BirdNest".start()

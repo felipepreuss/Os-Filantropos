@@ -20,6 +20,7 @@ var infthrown = 1
 var defthrown = 1
 var maegrav = 1
 var onzegrav = 1
+var zeppelin_hp = 3
 var rng = RandomNumberGenerator.new()
 var debug = false
 
@@ -56,7 +57,7 @@ func _physics_process(delta):
 			defthrown = 1
 
 		if realmaetimer > 0:
-			maegrav = 35
+			maegrav = 1.5
 		else:
 			maegrav = 1
 
@@ -70,6 +71,9 @@ func _physics_process(delta):
 
 		if Input.is_action_just_pressed("Pneis"):
 			get_tree().change_scene_to_file("res://anita_max_wynn.tscn")
+
+		if zeppelin_hp <= 0:
+			get_tree().change_scene_to_file("res://gameover.tscn")
 
 		move_and_slide()
 	else:
@@ -118,6 +122,10 @@ func _on_mae_area_body_entered(body):
 func _on_onze_area_body_entered(body):
 	if body.name == "Zeppellin":
 		realonzetimer = onzetimer
+
+func _on_bico_do_bird_body_entered(body):
+	if body.name == "Zeppellin":
+		zeppelin_hp -= 1
 
 func _on_powerup_timer_timeout():
 	if realinflationtimer > 0:

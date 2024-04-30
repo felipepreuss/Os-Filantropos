@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://drs78xptn6yta"]
+[gd_scene load_steps=38 format=3 uid="uid://drs78xptn6yta"]
 
-[ext_resource type="Texture2D" uid="uid://cjjxi6dc8nhsq" path="res://arte da cidade (separada)nova.png" id="1_8jn4o"]
+[ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_c16vp"]
 [ext_resource type="Script" path="res://Zeppellin.gd" id="1_ny46s"]
 [ext_resource type="Texture2D" uid="uid://thj2qxodn1ta" path="res://Arte do Zeppelin nova nova.png" id="2_ng4ga"]
+[ext_resource type="Shader" path="res://numev.gdshader" id="2_obiui"]
 [ext_resource type="Script" path="res://placeholdergrav.gd" id="3_m2okp"]
+[ext_resource type="Texture2D" uid="uid://babb612q02y5x" path="res://Arte da cidade nova kk.png" id="3_qa4r3"]
 [ext_resource type="Script" path="res://Inflation.gd" id="3_vo18k"]
 [ext_resource type="Script" path="res://inf.gd" id="5_i8oxc"]
 [ext_resource type="Script" path="res://Deflation.gd" id="5_lerfv"]
@@ -19,6 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://uhbrx0ue3sgp" path="res://passaro.webp" id="10_51f1f"]
 [ext_resource type="Script" path="res://mae.gd" id="14_cky2a"]
 [ext_resource type="Script" path="res://onze.gd" id="15_3bohk"]
+[ext_resource type="Script" path="res://lesbian.gd" id="22_tws7y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay6ak"]
+shader = ExtResource("2_obiui")
+shader_parameter/move_speed = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sw5k4"]
 animations = [{
@@ -31,8 +38,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xavg1"]
-size = Vector2(17.646, 15.6789)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfrxl"]
+radius = 7.93524
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56qbb"]
+size = Vector2(7.17282, 5.09761)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrl4e"]
+radius = 3.24154
+height = 11.4429
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0m7ct"]
 size = Vector2(20.4918, 20.2459)
@@ -67,18 +81,21 @@ size = Vector2(684, 623)
 metadata/_edit_horizontal_guides_ = [69.0]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_c16vp")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(766.825, 0)
+motion_mirroring = Vector2(783, 0)
 
 [node name="ArteDaCidade(separada)nova" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ay6ak")
 position = Vector2(393, 329)
 scale = Vector2(0.426048, 0.347016)
-texture = ExtResource("1_8jn4o")
+texture = ExtResource("3_qa4r3")
 
 [node name="Zeppellin" type="CharacterBody2D" parent="."]
 position = Vector2(564, 341)
-scale = Vector2(31.1517, -6.5726)
+scale = Vector2(-31.152, -6.573)
 safe_margin = 0.001
 script = ExtResource("1_ny46s")
 JUMP_VELOCITY = -100.0
@@ -89,10 +106,22 @@ scale = Vector2(0.0219459, -0.0920185)
 sprite_frames = SubResource("SpriteFrames_sw5k4")
 
 [node name="ZeppeCollision" type="CollisionShape2D" parent="Zeppellin"]
-position = Vector2(0.0330773, -1.47149e-06)
+position = Vector2(0.353108, 0.912824)
+rotation = -3.14159
+scale = Vector2(1.05, -1.462)
+shape = SubResource("CircleShape2D_wfrxl")
+
+[node name="ZeppeCollision2" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(-1.95816, -13.465)
 rotation = -3.14159
 scale = Vector2(0.930872, -1.46249)
-shape = SubResource("RectangleShape2D_xavg1")
+shape = SubResource("RectangleShape2D_56qbb")
+
+[node name="ZeppeCollision3" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(-4.7509, -2.12992)
+rotation = -3.14159
+scale = Vector2(0.930872, -1.46249)
+shape = SubResource("CapsuleShape2D_yrl4e")
 
 [node name="GravChanger" type="Timer" parent="Zeppellin"]
 wait_time = 5.0
@@ -323,6 +352,14 @@ text = "-Gravidade:"
 script = ExtResource("15_3bohk")
 metadata/_edit_use_anchors_ = true
 
+[node name="lesbian" type="Label" parent="UI"]
+offset_left = 27.0
+offset_top = 301.0
+offset_right = 67.0
+offset_bottom = 324.0
+text = "Vida:"
+script = ExtResource("22_tws7y")
+
 [connection signal="timeout" from="Zeppellin/GravChanger" to="Zeppellin" method="_on_grav_changer_timeout"]
 [connection signal="timeout" from="Zeppellin/PowerupTimer" to="Zeppellin" method="_on_powerup_timer_timeout"]
 [connection signal="timeout" from="Zeppellin/MoneyTick" to="Zeppellin" method="_on_money_tick_timeout"]
@@ -338,6 +375,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="body_entered" from="Powerups/SuperOnze/OnzeArea" to="Zeppellin" method="_on_onze_area_body_entered"]
 [connection signal="body_entered" from="Powerups/SuperOnze/OnzeArea" to="Powerups/SuperOnze" method="_on_onze_area_body_entered"]
 [connection signal="timeout" from="Powerups/SuperOnze/OnzeSpawner" to="Powerups/SuperOnze" method="_on_onze_spawner_timeout"]
+[connection signal="body_entered" from="Enemies/NormalBird/BicoDoBird" to="Zeppellin" method="_on_bico_do_bird_body_entered"]
 [connection signal="timeout" from="Enemies/NormalBird/BirdNest" to="Enemies/NormalBird" method="_on_bird_nest_timeout"]
 [connection signal="body_entered" from="Collisions/DeathZone" to="Zeppellin" method="_on_death_zone_body_entered"]
 [connection signal="body_entered" from="Collisions/SafeZone" to="Zeppellin" method="_on_safe_zone_body_entered"]

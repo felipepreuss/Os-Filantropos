@@ -12,7 +12,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	if get_node("../../Zeppellin").release_controls == true && spawn_started == false:
-		await get_tree().create_timer(rng.randf_range(30, 50)).timeout
 		$MaeSpawner.start()
 		spawn_started = true
 	position.x -= speed
@@ -20,16 +19,17 @@ func _physics_process(_delta):
 func _on_mae_area_body_entered(body):
 	if body.name == "Zeppellin":
 		speed = 0
-		position.x = 0
+		position.x = 1160
 		$MaeSpawner.start()
 
 func _spawn(spawnspeed, height):
 	speed = spawnspeed
 	position.y = height
 	$"MaeSpawner".stop()
+	print("mae")
 
 func _on_mae_spawner_timeout():
-	_spawn(-3, randomY)
+	_spawn(3, randomY)
 	randomY = rng.randf_range(100.0, 300.0)
 
 func _on_powerup_exit_body_entered(body):
