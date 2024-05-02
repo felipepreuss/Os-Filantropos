@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://du02xlx7jspsw"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_gr6s8"]
+[ext_resource type="Texture2D" uid="uid://c1dk27hgkicuk" path="res://Tela de início nova nova.png" id="2_8cke7"]
+[ext_resource type="Texture2D" uid="uid://c5bhi1qcn2y8f" path="res://botões3.png" id="3_ytlmf"]
+[ext_resource type="Texture2D" uid="uid://b64xw2kyi03cm" path="res://botões2.png" id="4_talt5"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gr6s8")
+
+[node name="Titulo" type="Sprite2D" parent="."]
+position = Vector2(563, 480)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_8cke7")
+
+[node name="StartBttn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 479.0
+offset_right = 567.0
+offset_bottom = 510.0
+scale = Vector2(1.44812, 1.51772)
+text = "COMEÇAR"
+
+[node name="QuitBttn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 566.0
+offset_right = 580.0
+offset_bottom = 597.0
+scale = Vector2(1.36736, 1.27294)
+text = "SAIR"
+
+[node name="StartSprite" type="Sprite2D" parent="."]
+position = Vector2(548, 446.05)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ytlmf")
+
+[node name="QuitSprite" type="Sprite2D" parent="."]
+position = Vector2(549, 385.05)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_talt5")
+
+[connection signal="pressed" from="StartBttn" to="." method="_on_start_bttn_pressed"]
+[connection signal="pressed" from="QuitBttn" to="." method="_on_quitbttn_pressed"]

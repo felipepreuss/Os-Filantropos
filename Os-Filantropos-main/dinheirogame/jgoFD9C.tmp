@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://drs78xptn6yta"]
+
+[ext_resource type="Texture2D" uid="uid://dtvyb5csu8lpu" path="res://icon.svg" id="1_kp038"]
+[ext_resource type="Script" path="res://Zeppellin.gd" id="1_ny46s"]
+[ext_resource type="Script" path="res://DeathZone.gd" id="3_xnowx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8apm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kp038")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xavg1"]
+size = Vector2(17.646, 15.6789)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0smi"]
+size = Vector2(507.422, 598.863)
+
+[node name="CenaDeJogo" type="Node2D"]
+scale = Vector2(2.35896, 0.219297)
+
+[node name="Zeppellin" type="CharacterBody2D" parent="."]
+position = Vector2(227.219, 693.124)
+scale = Vector2(6.99172, -11.6526)
+script = ExtResource("1_ny46s")
+
+[node name="ZeppeSprite" type="AnimatedSprite2D" parent="Zeppellin"]
+scale = Vector2(0.132388, -0.186393)
+sprite_frames = SubResource("SpriteFrames_h8apm")
+
+[node name="ZeppeCollision" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(0.034111, 0.0413742)
+rotation = -3.14159
+scale = Vector2(0.930872, -1.46249)
+shape = SubResource("RectangleShape2D_xavg1")
+
+[node name="DeathZone" type="Area2D" parent="."]
+position = Vector2(259.012, 2895.62)
+scale = Vector2(1.35083, 1.4823)
+script = ExtResource("3_xnowx")
+
+[node name="DeathCollision" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(-11.2983, -141.512)
+rotation = -3.14159
+scale = Vector2(0.706278, -0.534244)
+shape = SubResource("RectangleShape2D_r0smi")
+
+[node name="prediofoda" type="Sprite2D" parent="DeathZone"]
+position = Vector2(25.7331, -476.83)
+rotation = 3.14159
+scale = Vector2(0.283255, 8.01847)
+texture = ExtResource("1_kp038")
+
+[node name="prediofoda2" type="Sprite2D" parent="DeathZone"]
+position = Vector2(-10.6699, -356.854)
+rotation = -3.14159
+scale = Vector2(0.278439, 6.08129)
+texture = ExtResource("1_kp038")
+
+[connection signal="body_entered" from="DeathZone" to="Zeppellin" method="_on_death_zone_body_entered"]

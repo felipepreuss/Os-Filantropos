@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://4nhwifau144t"]
+
+[ext_resource type="Script" path="res://story.gd" id="1_sukvp"]
+[ext_resource type="Texture2D" uid="uid://djrg7j7uk83cw" path="res://botões.png" id="2_jxqch"]
+
+[node name="Story" type="Node2D"]
+position = Vector2(83, 43)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_sukvp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 53.0
+offset_top = 55.0
+offset_right = 1091.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 30
+text = "Enquanto planavam acima de uma cidade vizinha,
+ao caminho a um Encontro de Burgueses
+
+Marcelo Zochio, o filantrópo, e seu mordomo, Alexandre Flausino
+se encontram em uma situação pegajosa.
+
+Sua nave sofre danos e agora estão caindo!
+Eles devem agora tentar manter seu veículo funcional
+pelo máximo de tempo possível.
+
+Mas quanto mais eles sobrevivem...
+...mais do seu dinheiro é evacuado por um buraco no casco do Zeppelin."
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 502.5
+offset_top = 617.5
+offset_right = 686.5
+offset_bottom = 677.5
+theme_override_font_sizes/font_size = 35
+text = "Instruções"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(597.5, 450)
+scale = Vector2(0.5, 0.469)
+texture = ExtResource("2_jxqch")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

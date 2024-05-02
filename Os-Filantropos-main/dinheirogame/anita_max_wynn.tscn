@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dba3rj28ajuqo"]
+
+[ext_resource type="Script" path="res://anita_max_wynn.gd" id="1_bryi2"]
+[ext_resource type="Texture2D" uid="uid://dhxrxfyluilx" path="res://win screen.png" id="1_fvh6t"]
+
+[node name="anita max wynn" type="Node2D"]
+position = Vector2(306, 197)
+script = ExtResource("1_bryi2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(268, 164)
+scale = Vector2(1.04231, 0.604113)
+texture = ExtResource("1_fvh6t")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -256.0
+offset_top = -153.0
+offset_right = 794.0
+offset_bottom = -118.0
+theme_override_font_sizes/font_size = 25
+text = "Parabéns! Vocês conseguiram pousar o Zeppelin com sucesso! Mas e o dinheiro? D:"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 585.0
+offset_top = 163.0
+offset_right = 599.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

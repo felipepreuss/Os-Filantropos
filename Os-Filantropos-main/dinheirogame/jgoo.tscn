@@ -1,0 +1,405 @@
+[gd_scene load_steps=40 format=3 uid="uid://drs78xptn6yta"]
+
+[ext_resource type="Script" path="res://ParallaxBackground.gd" id="1_c16vp"]
+[ext_resource type="Script" path="res://Zeppellin.gd" id="1_ny46s"]
+[ext_resource type="Texture2D" uid="uid://thj2qxodn1ta" path="res://Arte do Zeppelin nova nova.png" id="2_ng4ga"]
+[ext_resource type="Shader" path="res://numev.gdshader" id="2_obiui"]
+[ext_resource type="Script" path="res://placeholdergrav.gd" id="3_m2okp"]
+[ext_resource type="Script" path="res://Inflation.gd" id="3_vo18k"]
+[ext_resource type="Texture2D" uid="uid://drvmtqf0f8n44" path="res://New art city.png" id="3_vsix5"]
+[ext_resource type="Script" path="res://inf.gd" id="5_i8oxc"]
+[ext_resource type="Script" path="res://Deflation.gd" id="5_lerfv"]
+[ext_resource type="Texture2D" uid="uid://ffjjl61wv2tf" path="res://Power up dindin.png" id="5_v7ygt"]
+[ext_resource type="Script" path="res://MaeDoCarlos.gd" id="6_khtlu"]
+[ext_resource type="Script" path="res://Label.gd" id="6_xp3vv"]
+[ext_resource type="Texture2D" uid="uid://cyv4a866hl4h" path="res://Power down dindin.png" id="7_3ox7q"]
+[ext_resource type="Script" path="res://startlabel.gd" id="7_udukb"]
+[ext_resource type="Script" path="res://SuperOnze.gd" id="8_3wmrl"]
+[ext_resource type="Script" path="res://NormalBird.gd" id="10_6krs7"]
+[ext_resource type="Texture2D" uid="uid://uhbrx0ue3sgp" path="res://passaro.webp" id="10_51f1f"]
+[ext_resource type="Texture2D" uid="uid://bmi4yhdqi4tx6" path="res://Power down gravidade.png" id="11_cheyi"]
+[ext_resource type="Texture2D" uid="uid://bi8kmxsabcbnu" path="res://Power up gravidade.png" id="13_kctf6"]
+[ext_resource type="Script" path="res://mae.gd" id="14_cky2a"]
+[ext_resource type="Script" path="res://onze.gd" id="15_3bohk"]
+[ext_resource type="AudioStream" uid="uid://d0m3k3x0rb6pe" path="res://Eagle-earrape.wav" id="16_uoa3a"]
+[ext_resource type="Script" path="res://lesbian.gd" id="22_tws7y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ay6ak"]
+shader = ExtResource("2_obiui")
+shader_parameter/move_speed = 0.05
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sw5k4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ng4ga")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wfrxl"]
+radius = 7.93524
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56qbb"]
+size = Vector2(7.17282, 5.09761)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrl4e"]
+radius = 3.24154
+height = 11.4429
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m7ct"]
+size = Vector2(20.4918, 20.2459)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihnt4"]
+size = Vector2(5, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0imf"]
+size = Vector2(4, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyieq"]
+size = Vector2(8, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb2ys"]
+size = Vector2(19.0399, 36.5196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0smi"]
+size = Vector2(1207.19, 156.583)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dsfn"]
+size = Vector2(1168, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcmqx"]
+size = Vector2(1167, 171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p0us"]
+size = Vector2(940, 624)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5i5g"]
+size = Vector2(684, 623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31imk"]
+
+[node name="CenaDeJogo" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [69.0]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_c16vp")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="ArteDaCidade(separada)nova" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ay6ak")
+position = Vector2(393, 329)
+texture = ExtResource("3_vsix5")
+
+[node name="Zeppellin" type="CharacterBody2D" parent="."]
+position = Vector2(564, 341)
+scale = Vector2(-31.152, -6.573)
+safe_margin = 0.001
+script = ExtResource("1_ny46s")
+JUMP_VELOCITY = -100.0
+
+[node name="ZeppeSprite" type="AnimatedSprite2D" parent="Zeppellin"]
+position = Vector2(-0.128404, -29.5165)
+scale = Vector2(0.0219459, -0.0920185)
+sprite_frames = SubResource("SpriteFrames_sw5k4")
+
+[node name="ZeppeCollision" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(0.353108, 0.912824)
+rotation = -3.14159
+scale = Vector2(1.05, -1.462)
+shape = SubResource("CircleShape2D_wfrxl")
+
+[node name="ZeppeCollision2" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(-1.95816, -13.465)
+rotation = -3.14159
+scale = Vector2(0.930872, -1.46249)
+shape = SubResource("RectangleShape2D_56qbb")
+
+[node name="ZeppeCollision3" type="CollisionShape2D" parent="Zeppellin"]
+position = Vector2(-4.7509, -2.12992)
+rotation = -3.14159
+scale = Vector2(0.930872, -1.46249)
+shape = SubResource("CapsuleShape2D_yrl4e")
+
+[node name="GravChanger" type="Timer" parent="Zeppellin"]
+wait_time = 5.0
+
+[node name="PowerupTimer" type="Timer" parent="Zeppellin"]
+
+[node name="MoneyTick" type="Timer" parent="Zeppellin"]
+wait_time = 0.5
+
+[node name="PipiuTimer" type="Timer" parent="Zeppellin"]
+
+[node name="Powerups" type="Node2D" parent="."]
+position = Vector2(45, 2)
+
+[node name="Inflation" type="CharacterBody2D" parent="Powerups"]
+position = Vector2(-84, 347)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("3_vo18k")
+
+[node name="InfSpr" type="Sprite2D" parent="Powerups/Inflation"]
+position = Vector2(-2.98023e-07, -14)
+scale = Vector2(0.295815, 0.290909)
+texture = ExtResource("5_v7ygt")
+
+[node name="InfArea" type="Area2D" parent="Powerups/Inflation"]
+
+[node name="InfAreaColl" type="CollisionShape2D" parent="Powerups/Inflation/InfArea"]
+position = Vector2(0, -0.299988)
+scale = Vector2(2.44, 2.44)
+shape = SubResource("RectangleShape2D_0m7ct")
+
+[node name="InfColl" type="CollisionShape2D" parent="Powerups/Inflation"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ihnt4")
+debug_color = Color(1, 0, 1, 0.419608)
+
+[node name="InflationSpawner" type="Timer" parent="Powerups/Inflation"]
+wait_time = 15.0
+
+[node name="Deflation" type="CharacterBody2D" parent="Powerups"]
+position = Vector2(1156, 347)
+script = ExtResource("5_lerfv")
+
+[node name="DefSpr" type="Sprite2D" parent="Powerups/Deflation"]
+position = Vector2(1, -14)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_3ox7q")
+
+[node name="DefArea" type="Area2D" parent="Powerups/Deflation"]
+
+[node name="DefAreaColl" type="CollisionShape2D" parent="Powerups/Deflation/DefArea"]
+scale = Vector2(2.44, 2.44)
+shape = SubResource("RectangleShape2D_0m7ct")
+
+[node name="DefColl" type="CollisionShape2D" parent="Powerups/Deflation"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_p0imf")
+debug_color = Color(1, 0, 1, 0.419608)
+
+[node name="DeflationSpawner" type="Timer" parent="Powerups/Deflation"]
+wait_time = 10.0
+
+[node name="MaeDoCarlos" type="CharacterBody2D" parent="Powerups"]
+position = Vector2(1155, 434)
+script = ExtResource("6_khtlu")
+
+[node name="NudeMae" type="Sprite2D" parent="Powerups/MaeDoCarlos"]
+position = Vector2(-2.38419e-07, -14)
+scale = Vector2(0.290158, 0.295976)
+texture = ExtResource("11_cheyi")
+
+[node name="MaeArea" type="Area2D" parent="Powerups/MaeDoCarlos"]
+
+[node name="MaeAreaColl" type="CollisionShape2D" parent="Powerups/MaeDoCarlos/MaeArea"]
+scale = Vector2(2.44, 2.44)
+shape = SubResource("RectangleShape2D_0m7ct")
+
+[node name="MaeColl" type="CollisionShape2D" parent="Powerups/MaeDoCarlos"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ihnt4")
+debug_color = Color(1, 0, 1, 0.419608)
+
+[node name="MaeSpawner" type="Timer" parent="Powerups/MaeDoCarlos"]
+wait_time = 25.0
+
+[node name="SuperOnze" type="CharacterBody2D" parent="Powerups"]
+position = Vector2(-84, 426)
+scale = Vector2(0.830006, 0.825634)
+script = ExtResource("8_3wmrl")
+
+[node name="OnzeFoto" type="Sprite2D" parent="Powerups/SuperOnze"]
+position = Vector2(-2.38419e-07, -14)
+scale = Vector2(0.29, 0.296)
+texture = ExtResource("13_kctf6")
+
+[node name="OnzeArea" type="Area2D" parent="Powerups/SuperOnze"]
+
+[node name="OnzeAreaColl" type="CollisionShape2D" parent="Powerups/SuperOnze/OnzeArea"]
+scale = Vector2(2.44, 2.44)
+shape = SubResource("RectangleShape2D_0m7ct")
+
+[node name="OnzeColl" type="CollisionShape2D" parent="Powerups/SuperOnze"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ihnt4")
+debug_color = Color(1, 0, 1, 0.419608)
+
+[node name="OnzeSpawner" type="Timer" parent="Powerups/SuperOnze"]
+wait_time = 20.0
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="NormalBird" type="CharacterBody2D" parent="Enemies"]
+position = Vector2(-162, 548)
+script = ExtResource("10_6krs7")
+
+[node name="BirdPhoto" type="Sprite2D" parent="Enemies/NormalBird"]
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("10_51f1f")
+
+[node name="BirdShape" type="CollisionShape2D" parent="Enemies/NormalBird"]
+position = Vector2(35, 11)
+shape = SubResource("RectangleShape2D_iyieq")
+debug_color = Color(0.690196, 0.0431373, 0.411765, 1)
+
+[node name="BicoDoBird" type="Area2D" parent="Enemies/NormalBird"]
+
+[node name="OBico" type="CollisionShape2D" parent="Enemies/NormalBird/BicoDoBird"]
+position = Vector2(31.5, 2)
+scale = Vector2(11.6072, 4.08)
+shape = SubResource("RectangleShape2D_qb2ys")
+
+[node name="BirdNest" type="Timer" parent="Enemies/NormalBird"]
+wait_time = 5.0
+
+[node name="BirdScreech" type="AudioStreamPlayer" parent="Enemies/NormalBird"]
+stream = ExtResource("16_uoa3a")
+volume_db = -10.0
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="DeathZone" type="Area2D" parent="Collisions"]
+position = Vector2(257, 3001)
+scale = Vector2(1.35083, 1.4823)
+
+[node name="DeathCollision" type="CollisionShape2D" parent="Collisions/DeathZone"]
+position = Vector2(238.372, -1591.45)
+rotation = -3.14159
+scale = Vector2(0.706278, -0.534244)
+shape = SubResource("RectangleShape2D_r0smi")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="SafeZone" type="Area2D" parent="Collisions"]
+
+[node name="SafeCollision" type="CollisionShape2D" parent="Collisions/SafeZone"]
+position = Vector2(582, 54.5)
+shape = SubResource("RectangleShape2D_2dsfn")
+
+[node name="SafeZone2" type="Area2D" parent="Collisions"]
+
+[node name="SafeCollision2" type="CollisionShape2D" parent="Collisions/SafeZone2"]
+position = Vector2(582.5, -63.5)
+shape = SubResource("RectangleShape2D_rcmqx")
+
+[node name="PowerupExit" type="Area2D" parent="Collisions"]
+
+[node name="InflationDestroyer" type="CollisionShape2D" parent="Collisions/PowerupExit"]
+position = Vector2(1709, 341)
+shape = SubResource("RectangleShape2D_6p0us")
+
+[node name="DeflationDestroyer" type="CollisionShape2D" parent="Collisions/PowerupExit"]
+position = Vector2(-429, 347)
+shape = SubResource("RectangleShape2D_k5i5g")
+
+[node name="BirdKilling" type="Area2D" parent="Collisions"]
+
+[node name="Rock" type="CollisionShape2D" parent="Collisions/BirdKilling"]
+position = Vector2(-578, 354)
+scale = Vector2(28.2765, 34.3395)
+shape = SubResource("RectangleShape2D_31imk")
+
+[node name="Stone" type="CollisionShape2D" parent="Collisions/BirdKilling"]
+position = Vector2(1732, 357)
+scale = Vector2(28.2765, 34.3395)
+shape = SubResource("RectangleShape2D_31imk")
+
+[node name="UI" type="Node2D" parent="."]
+
+[node name="moneylabel" type="Label" parent="UI"]
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 122.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 30
+text = "money:"
+script = ExtResource("3_m2okp")
+metadata/_edit_use_anchors_ = true
+
+[node name="startlabel" type="Label" parent="UI"]
+offset_left = 195.0
+offset_top = 149.0
+offset_right = 955.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 50
+text = "Pressione A ou → para começar"
+script = ExtResource("7_udukb")
+
+[node name="inf" type="Label" parent="UI"]
+offset_left = 26.0
+offset_top = 180.0
+offset_right = 93.0
+offset_bottom = 203.0
+text = "Inflação;"
+script = ExtResource("5_i8oxc")
+metadata/_edit_use_anchors_ = true
+
+[node name="def" type="Label" parent="UI"]
+offset_left = 26.0
+offset_top = 210.0
+offset_right = 98.0
+offset_bottom = 233.0
+text = "Deflação:"
+script = ExtResource("6_xp3vv")
+metadata/_edit_use_anchors_ = true
+
+[node name="mae" type="Label" parent="UI"]
+offset_left = 26.0
+offset_top = 240.0
+offset_right = 123.0
+offset_bottom = 263.0
+text = "+Gravidade: "
+script = ExtResource("14_cky2a")
+metadata/_edit_use_anchors_ = true
+
+[node name="onze" type="Label" parent="UI"]
+offset_left = 26.0
+offset_top = 270.0
+offset_right = 115.0
+offset_bottom = 293.0
+text = "-Gravidade:"
+script = ExtResource("15_3bohk")
+metadata/_edit_use_anchors_ = true
+
+[node name="lesbian" type="Label" parent="UI"]
+offset_left = 27.0
+offset_top = 301.0
+offset_right = 67.0
+offset_bottom = 324.0
+text = "Vida:"
+script = ExtResource("22_tws7y")
+
+[connection signal="timeout" from="Zeppellin/GravChanger" to="Zeppellin" method="_on_grav_changer_timeout"]
+[connection signal="timeout" from="Zeppellin/PowerupTimer" to="Zeppellin" method="_on_powerup_timer_timeout"]
+[connection signal="timeout" from="Zeppellin/MoneyTick" to="Zeppellin" method="_on_money_tick_timeout"]
+[connection signal="timeout" from="Zeppellin/PipiuTimer" to="Zeppellin" method="_on_pipiu_timer_timeout"]
+[connection signal="body_entered" from="Powerups/Inflation/InfArea" to="Zeppellin" method="_on_inf_area_body_entered"]
+[connection signal="body_entered" from="Powerups/Inflation/InfArea" to="Powerups/Inflation" method="_on_inf_area_body_entered"]
+[connection signal="timeout" from="Powerups/Inflation/InflationSpawner" to="Powerups/Inflation" method="_on_powerup_spawner_timeout"]
+[connection signal="body_entered" from="Powerups/Deflation/DefArea" to="Zeppellin" method="_on_def_area_body_entered"]
+[connection signal="body_entered" from="Powerups/Deflation/DefArea" to="Powerups/Deflation" method="_on_def_area_body_entered"]
+[connection signal="timeout" from="Powerups/Deflation/DeflationSpawner" to="Powerups/Deflation" method="_on_deflation_spawner_timeout"]
+[connection signal="body_entered" from="Powerups/MaeDoCarlos/MaeArea" to="Zeppellin" method="_on_mae_area_body_entered"]
+[connection signal="body_entered" from="Powerups/MaeDoCarlos/MaeArea" to="Powerups/MaeDoCarlos" method="_on_mae_area_body_entered"]
+[connection signal="timeout" from="Powerups/MaeDoCarlos/MaeSpawner" to="Powerups/MaeDoCarlos" method="_on_mae_spawner_timeout"]
+[connection signal="body_entered" from="Powerups/SuperOnze/OnzeArea" to="Zeppellin" method="_on_onze_area_body_entered"]
+[connection signal="body_entered" from="Powerups/SuperOnze/OnzeArea" to="Powerups/SuperOnze" method="_on_onze_area_body_entered"]
+[connection signal="timeout" from="Powerups/SuperOnze/OnzeSpawner" to="Powerups/SuperOnze" method="_on_onze_spawner_timeout"]
+[connection signal="body_entered" from="Enemies/NormalBird/BicoDoBird" to="Zeppellin" method="_on_bico_do_bird_body_entered"]
+[connection signal="timeout" from="Enemies/NormalBird/BirdNest" to="Enemies/NormalBird" method="_on_bird_nest_timeout"]
+[connection signal="body_entered" from="Collisions/DeathZone" to="Zeppellin" method="_on_death_zone_body_entered"]
+[connection signal="body_entered" from="Collisions/SafeZone" to="Zeppellin" method="_on_safe_zone_body_entered"]
+[connection signal="body_exited" from="Collisions/SafeZone" to="Zeppellin" method="_on_safe_zone_body_exited"]
+[connection signal="body_entered" from="Collisions/SafeZone2" to="Zeppellin" method="_on_safe_zone_2_body_entered"]
+[connection signal="body_exited" from="Collisions/SafeZone2" to="Zeppellin" method="_on_safe_zone_2_body_exited"]
+[connection signal="body_entered" from="Collisions/PowerupExit" to="Powerups/Inflation" method="_on_powerup_exit_body_entered"]
+[connection signal="body_entered" from="Collisions/PowerupExit" to="Powerups/Deflation" method="_on_powerup_exit_body_entered"]
+[connection signal="body_entered" from="Collisions/PowerupExit" to="Powerups/MaeDoCarlos" method="_on_powerup_exit_body_entered"]
+[connection signal="body_entered" from="Collisions/PowerupExit" to="Powerups/SuperOnze" method="_on_powerup_exit_body_entered"]
+[connection signal="body_entered" from="Collisions/BirdKilling" to="Enemies/NormalBird" method="_on_bird_killing_body_entered"]
